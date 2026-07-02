@@ -1,0 +1,8 @@
+# Dépendances des scripts Python embarqués dans les agents
+advertools>=0.16
+beautifulsoup4>=4.12
+lxml>=5.0
+extruct>=0.17
+requests>=2.31
+playwright>=1.44
+pandas>=2.2

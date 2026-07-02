@@ -1,0 +1,33 @@
+{
+  "mcpServers": {
+    "haloscan": {
+      "command": "cmd",
+      "args": ["/c", "npx", "-y", "@occirank/haloscan-server@latest", "start"],
+      "env": { "HALOSCAN_API_KEY": "VOTRE_CLE_HALOSCAN" }
+    },
+    "ahrefs": {
+      "type": "http",
+      "url": "https://api.ahrefs.com/mcp/mcp",
+      "headers": { "Authorization": "Bearer VOTRE_CLE_AHREFS" }
+    },
+    "wisewand": {
+      "command": "cmd",
+      "args": ["/c", "npx", "-y", "@wisewandtools/mcp-server@latest"],
+      "env": { "WISEWAND_API_KEY": "VOTRE_CLE_WISEWAND" }
+    },
+    "chrome-devtools": {
+      "command": "cmd",
+      "args": ["/c", "npx", "-y", "chrome-devtools-mcp@latest"]
+    },
+    "gsc-lucky": {
+      "command": "node",
+      "args": ["CHEMIN_VERS/mcp-gsc-lucky/dist/index.js"],
+      "env": {
+        "GSC_LUCKY_CLIENT_ID": "VOTRE_CLIENT_ID.apps.googleusercontent.com",
+        "GSC_LUCKY_CLIENT_SECRET": "VOTRE_CLIENT_SECRET",
+        "GSC_LUCKY_REFRESH_TOKEN": "VOTRE_REFRESH_TOKEN",
+        "GSC_DEFAULT_SITE_URL": "https://www.votre-site.fr/"
+      }
+    }
+  }
+}

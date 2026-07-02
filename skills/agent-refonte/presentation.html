@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent SEO Refonte &amp; Migration — Présentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:oklch(98.5% .003 250);--bg-surface:oklch(100% 0 0);--bg-muted:oklch(96% .005 250);--bg-hover:oklch(94% .008 250);
+  --text:oklch(25% .02 250);--text-secondary:oklch(45% .02 250);--text-muted:oklch(60% .015 250);
+  --accent:oklch(55% .18 250);--accent-hover:oklch(48% .20 250);--accent-bg:oklch(95% .03 250);
+  --success:oklch(55% .17 155);--success-bg:oklch(95% .03 155);
+  --warning:oklch(65% .18 85);--warning-bg:oklch(95% .04 85);
+  --danger:oklch(55% .2 25);--danger-bg:oklch(95% .04 25);
+  --info:oklch(55% .15 280);--info-bg:oklch(95% .03 280);
+  --border:oklch(90% .01 250);--border-strong:oklch(82% .02 250);
+  --radius-sm:4px;--radius:8px;--radius-lg:12px;
+  --font-sans:'Inter',system-ui,sans-serif;--font-display:'Plus Jakarta Sans',var(--font-sans);--font-mono:'JetBrains Mono',ui-monospace,monospace;
+  --text-sm:clamp(.8125rem,.78rem + .15vw,.875rem);--text-base:clamp(.9375rem,.9rem + .15vw,1rem);
+  --text-lg:clamp(1.125rem,1.05rem + .25vw,1.25rem);--text-xl:clamp(1.375rem,1.25rem + .4vw,1.625rem);
+  --text-2xl:clamp(1.75rem,1.5rem + .6vw,2.125rem);--text-3xl:clamp(2.25rem,1.9rem + .8vw,2.75rem);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--text);font-size:var(--text-base);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:clamp(24px,5vw,64px) clamp(20px,4vw,40px)}
+h1,h2,h3{font-family:var(--font-display);line-height:1.2;color:var(--text)}
+.eyebrow{font-family:var(--font-mono);font-size:var(--text-sm);color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
+h1{font-size:var(--text-3xl);font-weight:800;margin-bottom:16px}
+.lead{font-size:var(--text-lg);color:var(--text-secondary);max-width:62ch}
+.cmd{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:var(--text-base);background:var(--text);color:oklch(98% 0 0);padding:10px 16px;border-radius:var(--radius);margin-top:24px}
+.cmd .dot{width:8px;height:8px;border-radius:50%;background:var(--success)}
+section{margin-top:clamp(40px,6vw,64px)}
+h2{font-size:var(--text-2xl);font-weight:700;margin-bottom:8px}
+.sub{color:var(--text-muted);margin-bottom:24px;max-width:64ch}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.card{background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;transition:.2s cubic-bezier(.4,0,.2,1)}
+.card:hover{transform:translateY(-2px);box-shadow:0 1px 3px oklch(0% 0 0 / .06);border-color:var(--border-strong)}
+.card h3{font-size:var(--text-lg);font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.card .tag{font-family:var(--font-mono);font-size:.7rem;color:var(--text-muted);background:var(--bg-muted);padding:2px 8px;border-radius:var(--radius-sm);font-weight:500}
+.card p{font-size:var(--text-sm);color:var(--text-secondary);margin-bottom:12px}
+ul.checks{list-style:none}
+ul.checks li{font-size:var(--text-sm);color:var(--text);padding:7px 0 7px 24px;position:relative;border-top:1px solid var(--border)}
+ul.checks li:first-child{border-top:none}
+ul.checks li::before{content:"";position:absolute;left:4px;top:14px;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+ul.checks li.crit::before{background:var(--danger)}
+ul.checks li.imp::before{background:var(--warning)}
+.steps{counter-reset:s;display:grid;gap:12px}
+.step{display:flex;gap:16px;background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px}
+.step::before{counter-increment:s;content:counter(s);flex:0 0 32px;height:32px;display:grid;place-items:center;background:var(--accent-bg);color:var(--accent);font-family:var(--font-mono);font-weight:600;border-radius:50%}
+.step div strong{display:block;font-family:var(--font-display);font-weight:600;margin-bottom:2px}
+.step div span{font-size:var(--text-sm);color:var(--text-secondary)}
+.guard{background:var(--danger-bg);border:1px solid oklch(80% .08 25);border-radius:var(--radius-lg);padding:24px}
+.guard h3{color:var(--danger);margin-bottom:12px;font-size:var(--text-lg)}
+.guard ul{list-style:none}
+.guard li{font-size:var(--text-sm);padding:5px 0 5px 20px;position:relative}
+.guard li::before{content:"!";position:absolute;left:0;color:var(--danger);font-weight:700;font-family:var(--font-mono)}
+.note{background:var(--info-bg);border-left:3px solid var(--info);padding:16px 20px;border-radius:var(--radius);font-size:var(--text-sm);color:var(--text-secondary)}
+footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--border);font-size:var(--text-sm);color:var(--text-muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.pill{display:inline-block;font-family:var(--font-mono);font-size:.72rem;padding:3px 10px;border-radius:999px;background:var(--accent-bg);color:var(--accent);font-weight:500}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">Agent SEO · refonte &amp; migration</div>
+  <h1>Agent Refonte &amp; Migration</h1>
+  <p class="lead">Un consultant SEO senior packagé pour <strong>piloter une refonte sans perte de trafic</strong>. Il fige l'état actuel, construit le <strong>plan de redirection 301 complet</strong> (ancienne URL → nouvelle URL), préserve le link equity et le maillage, planifie la bascule et contrôle l'après-migration — chaque action chiffrée et prête à coller.</p>
+  <div class="cmd"><span class="dot"></span>/agent-refonte&nbsp;<span style="opacity:.6">example.fr</span></div>
+
+  <section>
+    <h2>Ce qu'il contrôle</h2>
+    <p class="sub">Périmètre centré sur la refonte/migration. L'audit technique pur, la stratégie sémantique et la rédaction sont délégués aux agents dédiés.</p>
+    <div class="grid">
+
+      <div class="card">
+        <h3><span class="pill">A</span>Snapshot AVANT</h3>
+        <p>Figer l'état de référence avant toute bascule — l'unique preuve qu'aucune URL n'est perdue.</p>
+        <ul class="checks">
+          <li class="crit">Crawl complet de l'existant (Screaming Frog / advertools)</li>
+          <li class="crit">Inventaire URLs indexées : GSC ⟷ Ahrefs ⟷ sitemap</li>
+          <li class="imp">Top pages par trafic à protéger (GSC + Ahrefs)</li>
+          <li class="imp">Top pages par backlinks à protéger (Ahrefs)</li>
+          <li>Inventaire Schema.org + graphe de maillage actuel</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><span class="pill">B</span>Mapping 301</h3>
+        <p>Le livrable central : ancienne URL → nouvelle URL, 1:1 prioritaire.</p>
+        <ul class="checks">
+          <li class="crit">Redirection 1:1 — jamais vers la home en masse</li>
+          <li class="imp">Pages à fusionner (many → 1 consolidée)</li>
+          <li class="imp">Suppressions définitives en 410 (pas 404)</li>
+          <li>Détection des orphelines à arbitrer</li>
+          <li>CSV + règles .htaccess / nginx / CMS prêtes à coller</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><span class="pill">C</span>Préservation link equity</h3>
+        <p>Reporter tout ce qui faisait la valeur de chaque page migrée.</p>
+        <ul class="checks">
+          <li class="crit">Backlinks (Ahrefs) → 301 1:1 obligatoire</li>
+          <li class="imp">Maillage interne reconstruit (vers nouvelles URLs)</li>
+          <li>Title / meta / Hn / canonical / hreflang reportés</li>
+          <li>Schema.org reporté (url / @id mis à jour)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><span class="pill">D</span>Plan de bascule</h3>
+        <p>Jalons du déploiement, du pré-lancement au jour J.</p>
+        <ul class="checks">
+          <li class="crit">Préprod en noindex + protégée par mot de passe</li>
+          <li class="imp">Checklist pré-bascule (mapping validé, sitemap, robots)</li>
+          <li>Jour J : 301 actives, HTTPS forcé, sitemap soumis</li>
+          <li>Changement d'adresse GSC (migration de domaine)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><span class="pill">E</span>Contrôle post-migration</h3>
+        <p>Re-crawl et suivi à J+1, J+7, J+30 après la bascule.</p>
+        <ul class="checks">
+          <li class="crit">404 émergentes → redirection manquante à ajouter</li>
+          <li class="crit">Chaînes &amp; boucles de redirection</li>
+          <li class="imp">Perte d'indexation (GSC) + positions avant/après</li>
+          <li>Redirections cassées (301 → 200, jamais → 404/410)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><span class="pill">F</span>CWV &amp; Schema reportés</h3>
+        <p>La nouvelle version doit être au moins aussi saine que l'ancienne.</p>
+        <ul class="checks">
+          <li class="imp">CWV nouvelle version : LCP ≤ 2,5 s, INP ≤ 200 ms, CLS ≤ 0,1</li>
+          <li>Schema reporté + types interdits écartés (HowTo, SpecialAnnouncement)</li>
+          <li>Sitemap régénéré et soumis, ancien déprécié</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Comment il travaille</h2>
+    <p class="sub">L'agent pose d'abord ses questions de cadrage, puis exécute jusqu'au livrable sans demander de validation à chaque étape (sauf actions sensibles : déploiement de redirections live).</p>
+    <div class="steps">
+      <div class="step"><div><strong>Cadrage</strong><span>Type de refonte (design / URLs / CMS / domaine / HTTPS-PWA), périmètre, préprod accessible, accès GSC/serveur/CMS, date de bascule.</span></div></div>
+      <div class="step"><div><strong>Snapshot AVANT</strong><span>Crawl complet + inventaire URLs indexées (GSC × Ahrefs × sitemap) + top pages trafic/backlinks à protéger + Schema/maillage actuels.</span></div></div>
+      <div class="step"><div><strong>Mapping 301</strong><span>Pour chaque ancienne URL : 1:1, fusion ou 410. CSV + règles serveur prêtes à coller. Jamais vers la home en masse.</span></div></div>
+      <div class="step"><div><strong>Préservation &amp; bascule</strong><span>Link equity, maillage, balises et Schema reportés. Checklist pré-bascule → jour J → sitemap soumis.</span></div></div>
+      <div class="step"><div><strong>Contrôle post-migration</strong><span>404, chaînes, redirections cassées, indexation, positions avant/après, CWV. Recos auto-suffisantes : URL, avant→après, gain/risque.</span></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 style="margin-bottom:24px">Garde-fous</h2>
+    <div class="guard">
+      <h3>Jamais en automatique — confirmation explicite requise</h3>
+      <ul>
+        <li>Déployer des redirections en live ou modifier le .htaccess / robots.txt / sitemap d'un site client — l'agent génère, l'humain déploie</li>
+        <li>Push en production, suppression ou bascule d'URLs en ligne, changement d'adresse GSC</li>
+        <li>Mapping 1:1 obligatoire — jamais de redirection en masse vers la home (signal soft-404)</li>
+        <li>Jamais de chaîne ni de boucle de redirection : toujours pointer vers la destination finale</li>
+        <li>Profondeur d'exécution limitée à 3 niveaux · budget API ≤ ~500 appels MCP payants</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="note"><strong>Portable.</strong> Ce répertoire est autonome : il embarque ses skills, ses références de seuils et ses scripts Python. Il peut être partagé tel quel (lien Dropbox) à n'importe quel consultant disposant de Claude Code — déposer le dossier dans <code>.claude/skills/</code> et taper <code>/agent-refonte &lt;domaine&gt;</code>.</div>
+  </section>
+
+  <footer>
+    <span>Agent SEO Refonte &amp; Migration · Consultant SEO IA</span>
+    <span>Mapping 1:1 · jamais vers la home · INP &gt; FID · seuils = source de vérité</span>
+  </footer>
+
+</div>
+</body>
+</html>

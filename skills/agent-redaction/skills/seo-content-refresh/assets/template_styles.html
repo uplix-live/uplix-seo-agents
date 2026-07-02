@@ -1,0 +1,89 @@
+<!-- =====================================================================
+CSS inline minimal pour push WordPress — classes préfixées uplix-*
+À insérer en début du `content` envoyé via REST API.
+Classes neutres (n'utilisent pas de classes du thème WP).
+===================================================================== -->
+<style>
+/* TL;DR encadré */
+.uplix-tldr{background:#e8efff;border-left:3px solid #3b6ef5;padding:20px 24px;border-radius:8px;margin:24px 0 32px;font-size:1rem;line-height:1.6}
+.uplix-tldr-label{color:#3b6ef5;display:block;margin-bottom:8px;font-size:.8125rem;text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+
+/* Meta row (date, auteur, durée lecture) */
+.uplix-meta{display:flex;gap:12px;align-items:center;color:#6b7280;font-size:.875rem;margin-bottom:16px;flex-wrap:wrap}
+.uplix-meta .uplix-dot{width:4px;height:4px;border-radius:999px;background:#6b7280;display:inline-block}
+
+/* FAQ accordéon natif */
+.uplix-faq details{border:1px solid #e1e6ef;border-radius:8px;padding:16px 20px;margin-bottom:12px;background:#fff}
+.uplix-faq details[open]{border-color:#3b6ef5}
+.uplix-faq summary{font-weight:600;cursor:pointer;list-style:none;position:relative;padding-right:32px}
+.uplix-faq summary::-webkit-details-marker{display:none}
+.uplix-faq summary::after{content:"+";position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:1.4em;color:#3b6ef5;font-weight:300}
+.uplix-faq details[open] summary::after{content:"−"}
+.uplix-faq details p{margin-top:12px;margin-bottom:0;color:#4b5563}
+
+/* Tableau comparatif */
+.uplix-compare{border-collapse:collapse;width:100%;margin:16px 0 24px;font-size:.9rem}
+.uplix-compare th,.uplix-compare td{padding:12px 16px;text-align:left;border-bottom:1px solid #e1e6ef}
+.uplix-compare th{font-weight:600;color:#4b5563;border-bottom:2px solid #cbd1dc;background:#f5f7fb}
+.uplix-compare tbody tr:nth-child(even){background:#fafbfc}
+
+/* Callout CTA agence (fin d'article) */
+.uplix-callout{background:#f5f7fb;border:1px solid #e1e6ef;border-radius:12px;padding:32px;margin:48px 0;text-align:center}
+.uplix-callout h3{margin-top:0}
+
+/* Bouton CTA principal */
+.uplix-cta{background:#3b6ef5;color:#fff!important;padding:14px 24px;border-radius:8px;display:inline-block;font-weight:600;text-decoration:none;margin-top:8px}
+.uplix-cta:hover{background:#2855d4;color:#fff!important}
+
+/* Source/footer (sous l'article) */
+.uplix-source{margin-top:48px;padding-top:24px;border-top:1px solid #e1e6ef;color:#6b7280;font-size:.875rem}
+</style>
+
+<!-- ============== EXEMPLES D'UTILISATION ============== -->
+
+<!-- 1. Meta row -->
+<div class="uplix-meta">
+  <span>{{Catégorie}}</span>
+  <span class="uplix-dot"></span>
+  <span>Par l'équipe {{Agence}}</span>
+  <span class="uplix-dot"></span>
+  <span>Mis à jour le {{DD mois YYYY}}</span>
+  <span class="uplix-dot"></span>
+  <span>~{{X}} min de lecture</span>
+</div>
+
+<!-- 2. TL;DR -->
+<div class="uplix-tldr">
+<span class="uplix-tldr-label">TL;DR</span>
+{{Résumé de 3-4 phrases : qu'est-ce que c'est, prix/tarifs clés, pour qui, alternative gratuite éventuelle.}}
+</div>
+
+<!-- 3. Tableau comparatif -->
+<table class="uplix-compare">
+<thead><tr><th>Critère</th><th>Option A</th><th>Option B</th></tr></thead>
+<tbody>
+<tr><td><strong>Prix</strong></td><td>X $/mois</td><td>Y $/mois</td></tr>
+</tbody>
+</table>
+
+<!-- 4. FAQ accordéon -->
+<div class="uplix-faq">
+<details>
+<summary>{{Question 1}}</summary>
+<p>{{Réponse en 2-4 phrases, directe, factuelle.}}</p>
+</details>
+<details>
+<summary>{{Question 2}}</summary>
+<p>{{Réponse.}}</p>
+</details>
+</div>
+
+<!-- 5. Callout CTA agence -->
+<div class="uplix-callout">
+<h3>{{Titre du CTA — ex: "Aller plus loin : audit SEO avec X par Uplix"}}</h3>
+<p>{{Pitch agence en 2-3 phrases.}}</p>
+<p><a href="https://www.{{domain}}/{{pilier-business}}/" class="uplix-cta">{{Texte bouton →}}</a></p>
+</div>
+
+<!-- 6. Source/footer -->
+<p class="uplix-source">Sources : {{liste sources officielles}}. Auteur : <a href="https://www.{{domain}}/{{page-agence}}/">équipe {{Nom Agence}}</a> — Dernière mise à jour : {{DD mois YYYY}}.</p>

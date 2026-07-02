@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent Rédaction &amp; Contenu — Présentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:oklch(98.5% .003 250);--bg-surface:oklch(100% 0 0);--bg-muted:oklch(96% .005 250);--bg-hover:oklch(94% .008 250);
+  --text:oklch(25% .02 250);--text-secondary:oklch(45% .02 250);--text-muted:oklch(60% .015 250);
+  --accent:oklch(55% .18 250);--accent-hover:oklch(48% .20 250);--accent-bg:oklch(95% .03 250);
+  --success:oklch(55% .17 155);--success-bg:oklch(95% .03 155);
+  --warning:oklch(65% .18 85);--warning-bg:oklch(95% .04 85);
+  --danger:oklch(55% .2 25);--danger-bg:oklch(95% .04 25);
+  --info:oklch(55% .15 280);--info-bg:oklch(95% .03 280);
+  --border:oklch(90% .01 250);--border-strong:oklch(82% .02 250);
+  --radius-sm:4px;--radius:8px;--radius-lg:12px;
+  --font-sans:'Inter',system-ui,sans-serif;--font-display:'Plus Jakarta Sans',var(--font-sans);--font-mono:'JetBrains Mono',ui-monospace,monospace;
+  --text-sm:clamp(.8125rem,.78rem + .15vw,.875rem);--text-base:clamp(.9375rem,.9rem + .15vw,1rem);
+  --text-lg:clamp(1.125rem,1.05rem + .25vw,1.25rem);--text-xl:clamp(1.375rem,1.25rem + .4vw,1.625rem);
+  --text-2xl:clamp(1.75rem,1.5rem + .6vw,2.125rem);--text-3xl:clamp(2.25rem,1.9rem + .8vw,2.75rem);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--text);font-size:var(--text-base);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:clamp(24px,5vw,64px) clamp(20px,4vw,40px)}
+h1,h2,h3{font-family:var(--font-display);line-height:1.2;color:var(--text)}
+.eyebrow{font-family:var(--font-mono);font-size:var(--text-sm);color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
+h1{font-size:var(--text-3xl);font-weight:800;margin-bottom:16px}
+.lead{font-size:var(--text-lg);color:var(--text-secondary);max-width:62ch}
+.cmd{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:var(--text-base);background:var(--text);color:oklch(98% 0 0);padding:10px 16px;border-radius:var(--radius);margin-top:24px}
+.cmd .dot{width:8px;height:8px;border-radius:50%;background:var(--success)}
+section{margin-top:clamp(40px,6vw,64px)}
+h2{font-size:var(--text-2xl);font-weight:700;margin-bottom:8px}
+.sub{color:var(--text-muted);margin-bottom:24px;max-width:64ch}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.card{background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;transition:.2s cubic-bezier(.4,0,.2,1)}
+.card:hover{transform:translateY(-2px);box-shadow:0 1px 3px oklch(0% 0 0 / .06);border-color:var(--border-strong)}
+.card h3{font-size:var(--text-lg);font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.card .tag{font-family:var(--font-mono);font-size:.7rem;color:var(--text-muted);background:var(--bg-muted);padding:2px 8px;border-radius:var(--radius-sm);font-weight:500}
+.card p{font-size:var(--text-sm);color:var(--text-secondary);margin-bottom:12px}
+ul.checks{list-style:none}
+ul.checks li{font-size:var(--text-sm);color:var(--text);padding:7px 0 7px 24px;position:relative;border-top:1px solid var(--border)}
+ul.checks li:first-child{border-top:none}
+ul.checks li::before{content:"";position:absolute;left:4px;top:14px;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+ul.checks li.crit::before{background:var(--danger)}
+ul.checks li.imp::before{background:var(--warning)}
+.steps{counter-reset:s;display:grid;gap:12px}
+.step{display:flex;gap:16px;background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px}
+.step::before{counter-increment:s;content:counter(s);flex:0 0 32px;height:32px;display:grid;place-items:center;background:var(--accent-bg);color:var(--accent);font-family:var(--font-mono);font-weight:600;border-radius:50%}
+.step div strong{display:block;font-family:var(--font-display);font-weight:600;margin-bottom:2px}
+.step div span{font-size:var(--text-sm);color:var(--text-secondary)}
+.guard{background:var(--danger-bg);border:1px solid oklch(80% .08 25);border-radius:var(--radius-lg);padding:24px}
+.guard h3{color:var(--danger);margin-bottom:12px;font-size:var(--text-lg)}
+.guard ul{list-style:none}
+.guard li{font-size:var(--text-sm);padding:5px 0 5px 20px;position:relative}
+.guard li::before{content:"!";position:absolute;left:0;color:var(--danger);font-weight:700;font-family:var(--font-mono)}
+.note{background:var(--info-bg);border-left:3px solid var(--info);padding:16px 20px;border-radius:var(--radius);font-size:var(--text-sm);color:var(--text-secondary)}
+footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--border);font-size:var(--text-sm);color:var(--text-muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.pill{display:inline-block;font-family:var(--font-mono);font-size:.72rem;padding:3px 10px;border-radius:999px;background:var(--accent-bg);color:var(--accent);font-weight:500}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">Agent SEO · périmètre rédaction &amp; contenu</div>
+  <h1>Agent Rédaction &amp; Contenu</h1>
+  <p class="lead">Un consultant SEO contenu senior packagé, <strong>piloté par la Google Search Console</strong>. Il <strong>crée du nouveau contenu</strong> et <strong>identifie les contenus à mettre à jour</strong> : pour chaque URL il récupère tous les mots-clés sur lesquels elle rank déjà, détecte les pages qui <strong>entrent</strong> ou <strong>sortent</strong> du ranking, puis rédige des contenus calibrés — chaque recommandation chiffrée et prête à coller.</p>
+  <div class="cmd"><span class="dot"></span>/agent-redaction&nbsp;<span style="opacity:.6">example.fr</span></div>
+
+  <section>
+    <div class="note"><strong>Google Search Console impérative.</strong> Cet agent est centré sur la GSC : pour chaque URL il se connecte via le MCP <code>gsc-lucky</code> (live, par page) complété par les outils GSC d'Ahrefs (historique long). Si la GSC n'est pas connectée, l'agent le signale comme <strong>blocage</strong> et explique comment l'autoriser avant de continuer.</div>
+  </section>
+
+  <section>
+    <h2>Ce qu'il contrôle</h2>
+    <p class="sub">Périmètre strictement rédaction / contenu. L'audit technique, la stratégie sémantique globale et le netlinking sont délégués aux agents dédiés.</p>
+    <div class="grid">
+
+      <div class="card">
+        <h3><span class="pill">A</span>Mots-clés par URL (GSC)</h3>
+        <p>Pour chaque page, tous les KW sur lesquels elle rank déjà.</p>
+        <ul class="checks">
+          <li class="crit">Connexion GSC obligatoire (gsc-lucky + Ahrefs GSC)</li>
+          <li class="imp">Requêtes, position moyenne, impressions, clics, CTR</li>
+          <li>KW à fort potentiel : position 5-20 + CTR faible</li>
+          <li>Détection de cannibalisation entre URLs</li>
+          <li>Écart contenu ⟷ intention de recherche</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><span class="pill">B</span>URLs entrantes / sortantes du ranking</h3>
+        <p>Comparaison de deux périodes GSC — le contrôle clé.</p>
+        <ul class="checks">
+          <li class="crit">Requêtes/URLs qui décrochent (à rafraîchir en urgence)</li>
+          <li class="imp">Requêtes/URLs qui apparaissent (à consolider)</li>
+          <li class="imp">Pages en déclin : clics −30 %, position +3 places</li>
+          <li>Pages en progression : renforcer et mailler</li>
+          <li>Historique long via Ahrefs (gsc-keyword-history)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><span class="pill">C</span>Contenus à rafraîchir</h3>
+        <p>Détection des pages existantes à mettre à jour.</p>
+        <ul class="checks">
+          <li class="crit">Pages en déclin (signal n°1, via compare 2 périodes)</li>
+          <li class="imp">Thin content sous le plancher de couverture</li>
+          <li class="imp">Contenu obsolète (dates, chiffres périmés)</li>
+          <li class="crit">Business Value Score : déclin + BVS faible → consolider/supprimer, pas rafraîchir</li>
+          <li>Priorisation : BVS × trafic résiduel × facilité de correction</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><span class="pill">D</span>E-E-A-T</h3>
+        <p>Signaux d'expérience, expertise, autorité, confiance.</p>
+        <ul class="checks">
+          <li class="imp">Auteur visible, credentials, bio expert</li>
+          <li class="imp">Date de publication ET de mise à jour</li>
+          <li>Sources officielles citées, données first-party</li>
+          <li>Étendu à toutes les requêtes compétitives (déc. 2025)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><span class="pill">E</span>Citabilité GEO</h3>
+        <p>Aptitude à être cité par les moteurs IA.</p>
+        <ul class="checks">
+          <li class="imp">Score via citability_scorer.py</li>
+          <li>Phrases extractibles, TL;DR, format « answer-first »</li>
+          <li>Tableaux et listes pour données comparatives</li>
+          <li>AI Overviews, AI Mode, ChatGPT, Perplexity</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><span class="pill">F</span>Rédaction calibrée + WiseWand</h3>
+        <p>Briefs et contenus prêts à publier.</p>
+        <ul class="checks">
+          <li class="imp">≥ 2 700 mots, H2/H3, TL;DR, FAQ, tableaux comparatifs</li>
+          <li class="imp">JSON-LD valide (jamais HowTo/FAQPage hors gouv./santé)</li>
+          <li>Maillage interne Boussardon (5 liens, 5 ancres, Know→Do)</li>
+          <li>WiseWand (create_article) proposé pour le premier jet</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Comment il travaille</h2>
+    <p class="sub">L'agent pose d'abord ses questions de cadrage, vérifie la GSC, puis exécute jusqu'au livrable sans demander de validation à chaque étape (sauf actions sensibles comme la publication).</p>
+    <div class="steps">
+      <div class="step"><div><strong>Cadrage</strong><span>Objectif (créer / rafraîchir / les deux), thématiques, URLs ou section, ligne éditoriale, GSC connectée ?, WiseWand dispo ?, contraintes E-E-A-T.</span></div></div>
+      <div class="step"><div><strong>Analyse par URL (GSC)</strong><span>Fetch contenu + tous les KW GSC (position, impressions, clics, CTR) + cannibalisation + écart vs intent + opportunités PAA / KW proches.</span></div></div>
+      <div class="step"><div><strong>Contenus à rafraîchir</strong><span>Pages en déclin, thin content, contenu obsolète, E-E-A-T faible, citabilité GEO faible.</span></div></div>
+      <div class="step"><div><strong>Entrées / sorties du ranking</strong><span>Compare 2 périodes GSC + historique Ahrefs : entrantes, sortantes, déclin, progression — avec seuils et cause probable.</span></div></div>
+      <div class="step"><div><strong>Briefs + rédaction</strong><span>Brief par page puis rédaction calibrée (TL;DR, FAQ, comparatifs, JSON-LD, maillage). WiseWand en option.</span></div></div>
+      <div class="step"><div><strong>Livrables</strong><span>plan-editorial.md / content-refresh.md, keywords-par-url.xlsx, urls-entrantes-sortantes.xlsx, briefs et contenus rédigés.</span></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 style="margin-bottom:24px">Garde-fous</h2>
+    <div class="guard">
+      <h3>Jamais en automatique — confirmation explicite requise</h3>
+      <ul>
+        <li>Aucune publication WordPress (live OU draft) sans confirmation explicite ET gate qualité 14/14 de seo-content-refresh</li>
+        <li>Aucune analyse par URL sans Google Search Console connectée (pré-requis bloquant)</li>
+        <li>Suppression ou redirection d'URLs en ligne, envoi vers un service externe</li>
+        <li>Profondeur d'exécution limitée à 3 niveaux, puis arrêt</li>
+        <li>Budget API ≤ ~500 appels MCP payants par audit (GSC / Haloscan / Ahrefs / SEOQuantum)</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="note"><strong>Portable.</strong> Ce répertoire est autonome : il embarque ses skills, ses références de seuils et ses scripts Python. Il peut être partagé tel quel (lien Dropbox) à n'importe quel consultant disposant de Claude Code — déposer le dossier dans <code>.claude/skills/</code>, connecter la Search Console, puis taper <code>/agent-redaction &lt;domaine&gt;</code>.</div>
+  </section>
+
+  <footer>
+    <span>Agent SEO Rédaction &amp; Contenu · Consultant SEO IA</span>
+    <span>GSC par URL · entrées/sorties du ranking · E-E-A-T déc. 2025 · INP &gt; FID</span>
+  </footer>
+
+</div>
+</body>
+</html>

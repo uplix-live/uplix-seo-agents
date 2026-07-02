@@ -1,0 +1,238 @@
+{
+  "_meta": {
+    "description": "Templates JSON-LD par type de page. À insérer dans le `content` envoyé via REST API. Les placeholders {{...}} doivent être substitués avant push.",
+    "schemas_interdits": [
+      "HowTo (déprécié sept 2023)",
+      "SpecialAnnouncement (déprécié juil 2025)",
+      "FAQPage (restreint août 2023 aux sites gouvernementaux/santé)"
+    ],
+    "metriques_obsoletes": [
+      "FID (remplacé par INP depuis mars 2024)"
+    ]
+  },
+
+  "article_guide_comparatif": {
+    "description": "Article éditorial type guide/comparatif/avis (ex: /ahrefs/, /semrush-vs-ahrefs/, /meilleurs-outils-seo/)",
+    "json_ld": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "@id": "{{url}}#article",
+          "headline": "{{title}}",
+          "description": "{{meta_description}}",
+          "datePublished": "{{date_publication_ISO}}",
+          "dateModified": "{{date_modification_ISO}}",
+          "inLanguage": "fr-FR",
+          "author": {
+            "@type": "Organization",
+            "name": "{{nom_agence}}",
+            "url": "{{url_agence}}"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "{{nom_agence}}",
+            "url": "{{url_agence}}",
+            "logo": {"@type": "ImageObject", "url": "{{url_logo}}"}
+          },
+          "mainEntityOfPage": {"@type": "WebPage", "@id": "{{url}}"}
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "{{url_accueil}}"},
+            {"@type": "ListItem", "position": 2, "name": "{{categorie}}", "item": "{{url_categorie}}"},
+            {"@type": "ListItem", "position": 3, "name": "{{titre_court}}"}
+          ]
+        }
+      ]
+    }
+  },
+
+  "outil_saas": {
+    "description": "Page outil / SaaS / produit logiciel (ex: /ahrefs/, /semrush/, /haloscan/)",
+    "json_ld": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "@id": "{{url}}#article",
+          "headline": "{{title}}",
+          "datePublished": "{{date_publication_ISO}}",
+          "dateModified": "{{date_modification_ISO}}",
+          "inLanguage": "fr-FR",
+          "author": {"@type": "Organization", "name": "{{nom_agence}}", "url": "{{url_agence}}"},
+          "publisher": {"@type": "Organization", "name": "{{nom_agence}}", "url": "{{url_agence}}"},
+          "mainEntityOfPage": {"@type": "WebPage", "@id": "{{url}}"},
+          "about": {"@id": "{{url}}#software"}
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "{{url}}#software",
+          "name": "{{nom_outil}}",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Web",
+          "url": "{{url_officiel_outil}}",
+          "offers": [
+            {"@type": "Offer", "name": "{{nom_plan_1}}", "price": "{{prix_1}}", "priceCurrency": "{{devise}}"},
+            {"@type": "Offer", "name": "{{nom_plan_2}}", "price": "{{prix_2}}", "priceCurrency": "{{devise}}"}
+          ],
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "{{note_sur_5}}",
+            "reviewCount": "{{nb_avis}}",
+            "bestRating": "5",
+            "worstRating": "1"
+          },
+          "review": {
+            "@type": "Review",
+            "reviewRating": {"@type": "Rating", "ratingValue": "{{note_uplix}}", "bestRating": "5"},
+            "author": {"@type": "Organization", "name": "{{nom_agence}}"},
+            "datePublished": "{{date_modification_ISO}}"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "{{url_accueil}}"},
+            {"@type": "ListItem", "position": 2, "name": "Outils SEO", "item": "{{url_categorie}}"},
+            {"@type": "ListItem", "position": 3, "name": "{{nom_outil}}"}
+          ]
+        }
+      ]
+    }
+  },
+
+  "service_agence": {
+    "description": "Page service d'agence (ex: /agence-seo/, /agence-data/, /audit-seo/)",
+    "json_ld": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Service",
+          "@id": "{{url}}#service",
+          "name": "{{nom_service}}",
+          "description": "{{description_service}}",
+          "provider": {
+            "@type": "Organization",
+            "@id": "{{url_agence}}#org",
+            "name": "{{nom_agence}}",
+            "url": "{{url_agence}}",
+            "logo": "{{url_logo}}"
+          },
+          "areaServed": {"@type": "Country", "name": "France"},
+          "serviceType": "{{categorie_service}}",
+          "audience": {"@type": "BusinessAudience"}
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "{{url_accueil}}"},
+            {"@type": "ListItem", "position": 2, "name": "{{nom_service}}"}
+          ]
+        }
+      ]
+    }
+  },
+
+  "lexique_definition": {
+    "description": "Page lexique / définition (ex: /lexique/definition-seo/, /lexique/backlink/)",
+    "json_ld": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "DefinedTerm",
+          "@id": "{{url}}#term",
+          "name": "{{terme}}",
+          "description": "{{definition_courte}}",
+          "inDefinedTermSet": {"@type": "DefinedTermSet", "name": "Lexique SEO", "url": "{{url_lexique}}"}
+        },
+        {
+          "@type": "Article",
+          "@id": "{{url}}#article",
+          "headline": "{{title}}",
+          "datePublished": "{{date_publication_ISO}}",
+          "dateModified": "{{date_modification_ISO}}",
+          "inLanguage": "fr-FR",
+          "author": {"@type": "Organization", "name": "{{nom_agence}}"},
+          "publisher": {"@type": "Organization", "name": "{{nom_agence}}"},
+          "mainEntityOfPage": {"@type": "WebPage", "@id": "{{url}}"},
+          "mainEntity": {"@id": "{{url}}#term"}
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "{{url_accueil}}"},
+            {"@type": "ListItem", "position": 2, "name": "Lexique", "item": "{{url_lexique}}"},
+            {"@type": "ListItem", "position": 3, "name": "{{terme}}"}
+          ]
+        }
+      ]
+    }
+  },
+
+  "produit_ecommerce": {
+    "description": "Page produit e-commerce (Schema Product + Offer + AggregateRating)",
+    "json_ld": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Product",
+          "@id": "{{url}}#product",
+          "name": "{{nom_produit}}",
+          "description": "{{description_produit}}",
+          "sku": "{{sku}}",
+          "brand": {"@type": "Brand", "name": "{{marque}}"},
+          "image": "{{url_image_principale}}",
+          "offers": {
+            "@type": "Offer",
+            "url": "{{url}}",
+            "priceCurrency": "{{devise}}",
+            "price": "{{prix}}",
+            "availability": "https://schema.org/InStock",
+            "itemCondition": "https://schema.org/NewCondition"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "{{note_sur_5}}",
+            "reviewCount": "{{nb_avis}}",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        }
+      ]
+    }
+  },
+
+  "local_business": {
+    "description": "Page locale / agence avec adresse physique",
+    "json_ld": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "LocalBusiness",
+          "@id": "{{url}}#localbusiness",
+          "name": "{{nom_business}}",
+          "image": "{{url_image}}",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "{{rue}}",
+            "addressLocality": "{{ville}}",
+            "postalCode": "{{code_postal}}",
+            "addressCountry": "FR"
+          },
+          "telephone": "{{telephone}}",
+          "url": "{{url}}",
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+              "opens": "09:00",
+              "closes": "18:00"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

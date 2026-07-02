@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent SEO Sémantique — Présentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:oklch(98.5% .003 250);--bg-surface:oklch(100% 0 0);--bg-muted:oklch(96% .005 250);--bg-hover:oklch(94% .008 250);
+  --text:oklch(25% .02 250);--text-secondary:oklch(45% .02 250);--text-muted:oklch(60% .015 250);
+  --accent:oklch(55% .18 250);--accent-hover:oklch(48% .20 250);--accent-bg:oklch(95% .03 250);
+  --success:oklch(55% .17 155);--success-bg:oklch(95% .03 155);
+  --warning:oklch(65% .18 85);--warning-bg:oklch(95% .04 85);
+  --danger:oklch(55% .2 25);--danger-bg:oklch(95% .04 25);
+  --info:oklch(55% .15 280);--info-bg:oklch(95% .03 280);
+  --border:oklch(90% .01 250);--border-strong:oklch(82% .02 250);
+  --radius-sm:4px;--radius:8px;--radius-lg:12px;
+  --font-sans:'Inter',system-ui,sans-serif;--font-display:'Plus Jakarta Sans',var(--font-sans);--font-mono:'JetBrains Mono',ui-monospace,monospace;
+  --text-sm:clamp(.8125rem,.78rem + .15vw,.875rem);--text-base:clamp(.9375rem,.9rem + .15vw,1rem);
+  --text-lg:clamp(1.125rem,1.05rem + .25vw,1.25rem);--text-xl:clamp(1.375rem,1.25rem + .4vw,1.625rem);
+  --text-2xl:clamp(1.75rem,1.5rem + .6vw,2.125rem);--text-3xl:clamp(2.25rem,1.9rem + .8vw,2.75rem);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--text);font-size:var(--text-base);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:clamp(24px,5vw,64px) clamp(20px,4vw,40px)}
+h1,h2,h3{font-family:var(--font-display);line-height:1.2;color:var(--text)}
+.eyebrow{font-family:var(--font-mono);font-size:var(--text-sm);color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
+h1{font-size:var(--text-3xl);font-weight:800;margin-bottom:16px}
+.lead{font-size:var(--text-lg);color:var(--text-secondary);max-width:62ch}
+.cmd{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:var(--text-base);background:var(--text);color:oklch(98% 0 0);padding:10px 16px;border-radius:var(--radius);margin-top:24px}
+.cmd .dot{width:8px;height:8px;border-radius:50%;background:var(--success)}
+section{margin-top:clamp(40px,6vw,64px)}
+h2{font-size:var(--text-2xl);font-weight:700;margin-bottom:8px}
+.sub{color:var(--text-muted);margin-bottom:24px;max-width:64ch}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.card{background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;transition:.2s cubic-bezier(.4,0,.2,1)}
+.card:hover{transform:translateY(-2px);box-shadow:0 1px 3px oklch(0% 0 0 / .06);border-color:var(--border-strong)}
+.card h3{font-size:var(--text-lg);font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.card .tag{font-family:var(--font-mono);font-size:.7rem;color:var(--text-muted);background:var(--bg-muted);padding:2px 8px;border-radius:var(--radius-sm);font-weight:500}
+.card p{font-size:var(--text-sm);color:var(--text-secondary);margin-bottom:12px}
+ul.checks{list-style:none}
+ul.checks li{font-size:var(--text-sm);color:var(--text);padding:7px 0 7px 24px;position:relative;border-top:1px solid var(--border)}
+ul.checks li:first-child{border-top:none}
+ul.checks li::before{content:"";position:absolute;left:4px;top:14px;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+ul.checks li.crit::before{background:var(--danger)}
+ul.checks li.imp::before{background:var(--warning)}
+.steps{counter-reset:s;display:grid;gap:12px}
+.step{display:flex;gap:16px;background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px}
+.step::before{counter-increment:s;content:counter(s);flex:0 0 32px;height:32px;display:grid;place-items:center;background:var(--accent-bg);color:var(--accent);font-family:var(--font-mono);font-weight:600;border-radius:50%}
+.step div strong{display:block;font-family:var(--font-display);font-weight:600;margin-bottom:2px}
+.step div span{font-size:var(--text-sm);color:var(--text-secondary)}
+.guard{background:var(--danger-bg);border:1px solid oklch(80% .08 25);border-radius:var(--radius-lg);padding:24px}
+.guard h3{color:var(--danger);margin-bottom:12px;font-size:var(--text-lg)}
+.guard ul{list-style:none}
+.guard li{font-size:var(--text-sm);padding:5px 0 5px 20px;position:relative}
+.guard li::before{content:"!";position:absolute;left:0;color:var(--danger);font-weight:700;font-family:var(--font-mono)}
+.note{background:var(--info-bg);border-left:3px solid var(--info);padding:16px 20px;border-radius:var(--radius);font-size:var(--text-sm);color:var(--text-secondary)}
+footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--border);font-size:var(--text-sm);color:var(--text-muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.pill{display:inline-block;font-family:var(--font-mono);font-size:.72rem;padding:3px 10px;border-radius:999px;background:var(--accent-bg);color:var(--accent);font-weight:500}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">Agent SEO · périmètre sémantique</div>
+  <h1>Agent Audit Sémantique</h1>
+  <p class="lead">Un consultant SEO sémantique senior packagé. Il <strong>cartographie l'univers de mots-clés</strong> réellement couvert par le domaine, le <strong>clusterise par univers et par intention</strong>, détecte la <strong>cannibalisation</strong>, et révèle surtout le <strong>champ sémantique des concurrents sur lequel le client est absent</strong> — les territoires à conquérir — puis structure les cocons pour les prendre.</p>
+  <div class="cmd"><span class="dot"></span>/agent-semantique&nbsp;<span style="opacity:.6">example.fr</span></div>
+
+  <section>
+    <h2>Ce qu'il contrôle</h2>
+    <p class="sub">Périmètre strictement sémantique et concurrentiel. La technique, la rédaction fine et le netlinking sont délégués aux agents dédiés.</p>
+    <div class="grid">
+
+      <div class="card">
+        <h3><span class="pill">A</span>Cartographie sémantique</h3>
+        <p>L'univers de mots-clés réellement positionné, croisé sur 2 à 3 sources.</p>
+        <ul class="checks">
+          <li>KW positionnés — Haloscan (FR) × Ahrefs (multi-pays)</li>
+          <li>Requêtes réelles GSC : clics, impressions, CTR, position</li>
+          <li>Couverture actuelle par univers</li>
+          <li>Détection / validation des concurrents directs</li>
+          <li>Structure de site suggérée à partir des KW</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><span class="pill">B</span>Clustering &amp; intention</h3>
+        <p>Regroupement sémantique et qualification de chaque cluster.</p>
+        <ul class="checks">
+          <li>Clustering par proximité (seo-toolkit A1, embeddings FR)</li>
+          <li>Intention : informationnel / transactionnel / navigationnel</li>
+          <li>Rattachement de chaque cluster à un univers métier</li>
+          <li>Extension : KW similaires, questions PAA, longue traîne</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><span class="pill">C</span>Cannibalisation</h3>
+        <p>Les pages qui se concurrencent sur la même intention.</p>
+        <ul class="checks">
+          <li class="crit">Similarité ≥ 0,85 (seuil thresholds.md)</li>
+          <li class="imp">URLs qui alternent sur une même requête (GSC)</li>
+          <li>Reco fusion / consolidation / repositionnement</li>
+          <li>URL canonique cible + URLs à 301</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><span class="pill">D</span>Content gap concurrents</h3>
+        <p>Le cœur de l'agent : les territoires où le client est <strong>absent</strong>.</p>
+        <ul class="checks">
+          <li class="crit">Champ sémantique concurrent où le client ne rank pas</li>
+          <li class="crit">competitors_keywords_diff (Haloscan) × competitors-overview (Ahrefs)</li>
+          <li class="imp">Clusters entiers manquants = territoires</li>
+          <li class="crit">Business Value Score : territoires BVS ≤ 1 écartés</li>
+          <li>Priorisation BVS × faisabilité × volume</li>
+          <li>Pages concurrentes de référence à attaquer</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><span class="pill">E</span>Cocons sémantiques</h3>
+        <p>Architecture pilier + satellites, maillage Boussardon.</p>
+        <ul class="checks">
+          <li class="imp">3 à 5 piliers, page mère = article le plus stratégique</li>
+          <li>Maillage Know→Do prioritaire, cross-pillar obligatoire</li>
+          <li>5 ancres vers une page = 5 ancres différentes</li>
+          <li>Pas de « Voir aussi » : liens contextuels in-body</li>
+          <li>Briefs des contenus manquants à créer</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><span class="pill">F</span>Couverture par univers</h3>
+        <p>Où le client est fort, partiel, ou absent — chiffré.</p>
+        <ul class="checks">
+          <li>Couverture % de chaque univers (KW couverts / KW du territoire)</li>
+          <li>Univers servis vs partiels vs non couverts</li>
+          <li>Univers adjacents : conquête la plus rapide</li>
+          <li>Gain estimé par cluster (CTR cible × volume)</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Comment il travaille</h2>
+    <p class="sub">L'agent pose d'abord ses questions de cadrage, puis exécute jusqu'au livrable sans demander de validation à chaque étape (sauf actions sensibles).</p>
+    <div class="steps">
+      <div class="step"><div><strong>Cadrage</strong><span>Univers prioritaires, concurrents (sinon détectés), marché FR/international (arbitre Haloscan vs Ahrefs), objectif, profondeur, livrable.</span></div></div>
+      <div class="step"><div><strong>Cartographie</strong><span>Extraction des KW positionnés (Haloscan × Ahrefs × GSC), clustering par univers, qualification d'intention, couverture actuelle.</span></div></div>
+      <div class="step"><div><strong>Cannibalisation</strong><span>Pages en conflit (similarité ≥ 0,85), recoupées GSC, recommandations de fusion/consolidation.</span></div></div>
+      <div class="step"><div><strong>Content gap</strong><span>Champ sémantique des concurrents où le client est absent. Territoires reclusterisés, scorés (BVS) et priorisés par BVS × faisabilité × volume.</span></div></div>
+      <div class="step"><div><strong>Cocons &amp; livrables</strong><span>Plan de cocons (pilier + satellites, maillage), briefs des contenus manquants, rapport .md + Excel (clusters, gap, cannibalisation) + HTML optionnel.</span></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 style="margin-bottom:24px">Garde-fous</h2>
+    <div class="guard">
+      <h3>Jamais en automatique — confirmation explicite requise</h3>
+      <ul>
+        <li>Push en production (WordPress/REST), suppression ou redirection d'URLs en ligne</li>
+        <li>Modification de sitemap, robots.txt ou .htaccess d'un site client</li>
+        <li>Croiser minimum 2 sources : un territoire vu par une seule source n'est pas validé</li>
+        <li>Profondeur d'exécution limitée à 3 niveaux, puis arrêt</li>
+        <li>Budget API ≤ ~500 appels MCP payants par audit</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="note"><strong>Portable.</strong> Ce répertoire est autonome : il embarque ses skills (seo-plan, seo-programmatic, seo-content, geo-compare, seo-competitor-pages, maillage-systeme), ses références de seuils et ses scripts Python. Il peut être partagé tel quel (lien Dropbox) à n'importe quel consultant disposant de Claude Code — déposer le dossier dans <code>.claude/skills/</code> et taper <code>/agent-semantique &lt;domaine&gt;</code>.</div>
+  </section>
+
+  <footer>
+    <span>Agent SEO Sémantique · Consultant SEO IA</span>
+    <span>Cannibalisation = 0,85 · croiser 2 sources · territoires à conquérir = priorité</span>
+  </footer>
+
+</div>
+</body>
+</html>
